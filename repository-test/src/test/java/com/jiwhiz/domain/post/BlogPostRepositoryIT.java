@@ -21,7 +21,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,15 +63,13 @@ public class BlogPostRepositoryIT {
     public void blogPostCRUD_ShouldWork() {
         // create account
         UserAccount account = new UserAccount();
-        account.setId(UUID.randomUUID().toString());
         account.getRoles().add(UserRoleType.ROLE_ADMIN);
         account.getRoles().add(UserRoleType.ROLE_AUTHOR);
         account.setDisplayName("John");
-        accountRepository.save(account);
+        account = accountRepository.save(account);
         
         //create blog post
         BlogPost blog = new BlogPost(account, "Test Blog", "This is a test blog content", "jiwhizblog, spring, REST");
-        blog.setId(UUID.randomUUID().toString());
         BlogPost savedBlog = blogPostRepository.save(blog);
         String id = savedBlog.getId();
         assertTrue(blogPostRepository.exists(id));

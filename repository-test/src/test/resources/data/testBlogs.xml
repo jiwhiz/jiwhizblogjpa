@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <USER_ACCOUNT id="user001" version="1" email="user1@jiwhizblog.com" display_name="John Doe"/>
-    <USER_ACCOUNT id="user002" version="1" email="user2@jiwhizblog.com" display_name="Jane Doe"/>
+    <USER_ACCOUNT id="user001" version="1" email="user1@jiwhizblog.com" display_name="John Doe" account_locked="false" trusted_account="true"/>
+    <USER_ACCOUNT id="user002" version="1" email="user2@jiwhizblog.com" display_name="Jane Doe" account_locked="false" trusted_account="true"/>
     
     <USER_ROLE account_id="user001" role="ROLE_USER"/>
     <USER_ROLE account_id="user001" role="ROLE_AUTHOR"/>
@@ -12,6 +12,6 @@
     <BLOG_POST id="blog002" version="1" author_id="user002" title="Blog 2" content="blog 2 content" published="false" />
     
     <COMMENT_POST id="comm001"  version="1" author_id="user002" blog_post_id="blog001" content="approved comment by Jane Doe" status="APPROVED" />
-    <COMMENT_POST id="comm002"  version="1" author_id="user0022" blog_post_id="blog001" content="pending mment by Jane Doe" status="PENDING" />
+    <COMMENT_POST id="comm002"  version="1" author_id="user002" blog_post_id="blog001" content="pending mment by Jane Doe" status="PENDING" />
     
 </dataset>

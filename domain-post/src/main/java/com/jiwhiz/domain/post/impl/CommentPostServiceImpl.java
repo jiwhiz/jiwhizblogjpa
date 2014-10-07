@@ -15,8 +15,6 @@
  */
 package com.jiwhiz.domain.post.impl;
 
-import java.util.UUID;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -47,7 +45,6 @@ public class CommentPostServiceImpl implements CommentPostService {
     @Override
     public CommentPost postComment(UserAccount user, BlogPost blogPost, String content) {
         CommentPost comment = new CommentPost(user, blogPost, content);
-        comment.setId(UUID.randomUUID().toString());
         LOGGER.debug(String.format("Add comment to blog ('%s'), by %s.", blogPost.getTitle(), user.getDisplayName()));
 
         if (user.isTrustedAccount()) {

@@ -22,7 +22,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
-import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,11 +47,10 @@ public class UserAccountRepositoryIT {
     public void testUserAccountCRUD() {
         // create account
         UserAccount account = new UserAccount();
-        account.setId(UUID.randomUUID().toString());
         account.getRoles().add(UserRoleType.ROLE_ADMIN);
         account.getRoles().add(UserRoleType.ROLE_AUTHOR);
         account.setDisplayName("John");
-        accountRepository.save(account);
+        account = accountRepository.save(account);
         String id = account.getId();
         assertTrue(accountRepository.exists(id));
 
@@ -78,7 +76,6 @@ public class UserAccountRepositoryIT {
     public void testAuditing() {
         // create account
         UserAccount account = new UserAccount();
-        account.setId(UUID.randomUUID().toString());
         account.getRoles().add(UserRoleType.ROLE_ADMIN);
         account.getRoles().add(UserRoleType.ROLE_AUTHOR);
         account.setDisplayName("John");

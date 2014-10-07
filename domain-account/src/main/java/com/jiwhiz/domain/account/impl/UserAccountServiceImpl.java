@@ -15,8 +15,6 @@
  */
 package com.jiwhiz.domain.account.impl;
 
-import java.util.UUID;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,7 +48,6 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount createUserAccount(ConnectionData data, UserProfile profile) {
         UserAccount account = new UserAccount();
-        account.setId(UUID.randomUUID().toString());
         
         if (accountRepository.count() == 0l) {
             LOGGER.info("First user, set as admin and author.");

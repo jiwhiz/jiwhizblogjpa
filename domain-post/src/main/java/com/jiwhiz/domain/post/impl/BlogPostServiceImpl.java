@@ -15,8 +15,6 @@
  */
 package com.jiwhiz.domain.post.impl;
 
-import java.util.UUID;
-
 import javax.inject.Inject;
 
 import com.jiwhiz.domain.account.UserAccount;
@@ -42,7 +40,6 @@ public class BlogPostServiceImpl implements BlogPostService {
     @Override
     public BlogPost createPost(UserAccount author, String title, String content, String tagString) {
         BlogPost post = new BlogPost(author, title, content, tagString);
-        post.setId(UUID.randomUUID().toString());
         return blogPostRepository.save(post);
     }
 }

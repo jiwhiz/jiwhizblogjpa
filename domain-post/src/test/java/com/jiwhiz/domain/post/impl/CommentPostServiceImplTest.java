@@ -16,7 +16,6 @@
 package com.jiwhiz.domain.post.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.when;
 
@@ -66,7 +65,6 @@ public class CommentPostServiceImplTest {
         
         CommentPost comment = serviceToTest.postComment(testUser,  testBlog,  "Test test test...");
         assertEquals("Status should be PENDING if user is not trusted.", CommentStatusType.PENDING, comment.getStatus());
-        assertNotNull(comment.getId());
     }
     
     @Test
