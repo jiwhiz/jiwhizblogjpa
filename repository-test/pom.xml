@@ -14,7 +14,7 @@
     <name>Repository Integration Test module</name>
 
     <dependencies>
-        <!-- Business Domain Modules-->
+        <!-- Business Domain Modules -->
         <dependency>
             <groupId>com.jiwhizblog</groupId>
             <artifactId>jiwhizblogjpa-domain-account</artifactId>
@@ -25,7 +25,7 @@
             <artifactId>jiwhizblogjpa-domain-post</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
@@ -39,19 +39,28 @@
             <version>1.1.0</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*IT.java</include>
+                    </includes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
