@@ -41,7 +41,7 @@ public abstract class BaseEntity implements Serializable {
     @Id
     @Column( name="id" )
     @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid2")
     private String id;
 
     @Version
