@@ -24,6 +24,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jiwhiz.domain.account.UserAccount;
 
@@ -33,54 +37,27 @@ import com.jiwhiz.domain.account.UserAccount;
  * @author Yuan Ji
  * 
  */
+@ToString(callSuper=true)
 @Entity
 @Table( name="BLOG_POST" )
 @SuppressWarnings("serial")
 public class BlogPost extends AbstractPost {
     
+    @Getter @Setter
     @Column( name="title" )
     private String title; 
 
+    @Getter @Setter
     @Column( name="published" )
-    private Boolean published;
+    private boolean published;
     
+    @Getter @Setter
     @Column( name="published_time" )
     private Date publishedTime;
     
+    @Getter @Setter
     @Column( name="tag_string" )
     private String tagString;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Boolean isPublished() {
-        return published;
-    }
-    
-    public void setPublished(Boolean published){
-        this.published = published;
-    }
-
-    public Date getPublishedTime() {
-        return publishedTime;
-    }
-
-    public void setPublishedTime(Date publishedTime) {
-        this.publishedTime = publishedTime;
-    }
-
-    public String getTagString() {
-        return tagString;
-    }
-
-    public void setTagString(String tagString) {
-        this.tagString = tagString;
-    }
 
     public BlogPost() {
     }
@@ -120,9 +97,5 @@ public class BlogPost extends AbstractPost {
     @JsonIgnore
     public String[] getTags() {
         return tagString.split(",");
-    }
-    
-    public String toString() {
-        return String.format("BlogPost {title='%s'}", getTitle());
     }
 }

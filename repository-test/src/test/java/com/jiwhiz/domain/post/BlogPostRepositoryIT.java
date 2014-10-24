@@ -37,7 +37,6 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.jiwhiz.JiwhizBlogRepositoryTestApplication;
 import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.account.UserAccountRepository;
-import com.jiwhiz.domain.account.UserRoleType;
 
 /**
  * Integration Test for BlogPostRepository.
@@ -60,13 +59,9 @@ public class BlogPostRepositoryIT {
     
     
     @Test
+    @DatabaseSetup("classpath:/data/testBlogs.xml")
     public void blogPostCRUD_ShouldWork() {
-        // create account
-        UserAccount account = new UserAccount();
-        account.getRoles().add(UserRoleType.ROLE_ADMIN);
-        account.getRoles().add(UserRoleType.ROLE_AUTHOR);
-        account.setDisplayName("John");
-        account = accountRepository.save(account);
+        UserAccount account = accountRepository.findOne("user001");
         
         //create blog post
         BlogPost blog = new BlogPost(account, "Test Blog", "This is a test blog content", "jiwhizblog, spring, REST");

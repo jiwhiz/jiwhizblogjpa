@@ -19,6 +19,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jiwhiz.domain.BaseEntity;
 
@@ -28,136 +32,59 @@ import com.jiwhiz.domain.BaseEntity;
  * @author Yuan Ji
  * 
  */
+@ToString(callSuper=true)
 @SuppressWarnings("serial")
 @Entity
 @Table( name="USER_SOCIAL_CXN" )
 public class UserSocialConnection extends BaseEntity {
     
+    @Getter @Setter
     @Column( name="user_id" )
     private String userId;
     
+    @Getter @Setter
     @Column( name="provider_id" )
     private String providerId;
     
+    @Getter @Setter
     @Column( name="provider_user_id" )
     private String providerUserId;
     
+    @Getter @Setter
     @Column( name="rank" )
     private int rank;
     
+    @Getter @Setter
     @Column( name="display_name" )
     private String displayName;
     
+    @Getter @Setter
     @Column( name="profile_url" )
     private String profileUrl;
     
+    @Getter @Setter
     @Column( name="image_url" )
     private String imageUrl;
     
+    @Getter @Setter
     @JsonIgnore
     @Column( name="access_token" )
     private String accessToken;
     
+    @Getter @Setter
     @JsonIgnore
     @Column( name="secret" )
     private String secret;
     
+    @Getter @Setter
     @JsonIgnore
     @Column( name="refresh_token" )
     private String refreshToken;
     
-    
+    @Getter @Setter
     @JsonIgnore
     @Column( name="expire_time" )
     private Long expireTime;
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(String providerId) {
-        this.providerId = providerId;
-    }
-
-    public String getProviderUserId() {
-        return providerUserId;
-    }
-
-    public void setProviderUserId(String providerUserId) {
-        this.providerUserId = providerUserId;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getProfileUrl() {
-        return profileUrl;
-    }
-
-    public void setProfileUrl(String profileUrl) {
-        this.profileUrl = profileUrl;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public Long getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
-    }
 
     public UserSocialConnection() {
         super();
@@ -179,11 +106,4 @@ public class UserSocialConnection extends BaseEntity {
         this.refreshToken = refreshToken;
         this.expireTime = expireTime;
     }
-
-    public String toString() {
-        return String.format(
-                "UserSocialConnection { userId : '%s', providerId : '%s', providerUserId : '%s', displayName : '%s'",
-                userId, providerId, providerUserId, displayName);
-    }
-
 }

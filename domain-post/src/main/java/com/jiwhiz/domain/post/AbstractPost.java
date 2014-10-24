@@ -21,6 +21,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jiwhiz.domain.BaseAuditableEntity;
 import com.jiwhiz.domain.account.UserAccount;
@@ -31,33 +35,20 @@ import com.jiwhiz.domain.account.UserAccount;
  * @author Yuan Ji
  *
  */
+@ToString(callSuper=true)
 @MappedSuperclass
 @SuppressWarnings("serial")
 public abstract class AbstractPost extends BaseAuditableEntity {
 
+    @Getter @Setter
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="author_id")
     private UserAccount author;
 
+    @Getter @Setter
     @Column( name="content" )
     private String content;
-
-    public UserAccount getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(UserAccount author) {
-        this.author = author;
-    }
-
-    public String getContent() {
-        return content;
-    }
-    
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public AbstractPost() {
     }

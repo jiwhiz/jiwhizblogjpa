@@ -24,8 +24,13 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.social.security.SocialUserDetails;
@@ -38,90 +43,42 @@ import com.jiwhiz.domain.BaseAuditableEntity;
  * @author Yuan Ji
  * 
  */
+@ToString(callSuper=true)
 @SuppressWarnings("serial")
 @Entity
 @Table( name="USER_ACCOUNT" )
 public class UserAccount extends BaseAuditableEntity implements SocialUserDetails {
     
-    @ElementCollection(targetClass=UserRoleType.class)
+    @Getter @Setter
+    @ElementCollection(targetClass=UserRoleType.class, fetch=FetchType.EAGER)
     @Enumerated(EnumType.STRING) 
     @CollectionTable(name="USER_ROLE", joinColumns=@JoinColumn(name="account_id"))
     @Column(name="role")
     private Collection<UserRoleType> roles;
     
+    @Getter @Setter
     @Column( name="email" )
     private String email;
     
+    @Getter @Setter
     @Column( name="display_name" )
     private String displayName;
     
+    @Getter @Setter
     @Column( name="image_url" )
     private String imageUrl;
     
+    @Getter @Setter
     @Column( name="web_site" )
     private String webSite;
     
+    @Getter @Setter
     @Column( name="account_locked" )
-    private Boolean accountLocked = false;
+    private boolean accountLocked = false;
     
+    @Getter @Setter
     @Column( name="trusted_account" )
-    private Boolean trustedAccount = false;
-
-    public Collection<UserRoleType> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<UserRoleType> roles) {
-        this.roles = roles;
-    }
-    
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getWebSite() {
-        return webSite;
-    }
-
-    public void setWebSite(String webSite) {
-        this.webSite = webSite;
-    }
-
-    public Boolean isAccountLocked() {
-        return accountLocked;
-    }
-
-    public void setAccountLocked(Boolean accountLocked) {
-        this.accountLocked = accountLocked;
-    }
-
-    public Boolean isTrustedAccount() {
-        return trustedAccount;
-    }
-
-    public void setTrustedAccount(Boolean trustedAccount) {
-        this.trustedAccount = trustedAccount;
-    }
+    private boolean trustedAccount = false;
 
     public UserAccount() {
         this.roles = new ArrayList<>();
@@ -187,15 +144,6 @@ public class UserAccount extends BaseAuditableEntity implements SocialUserDetail
         setWebSite(webSite);
     }
     
-    @Override
-    public String toString() {
-        String str = String.format("UserAccount{userId:'%s'; displayName:'%s';roles:[", getUserId(), getDisplayName());
-        for (UserRoleType role : getRoles()) {
-            str += role.toString() + ",";
-        }
-        return str + "]}";
-    }
-
     @Override
     public String getUserId() {
         return getId();

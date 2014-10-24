@@ -24,6 +24,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jiwhiz.domain.account.UserAccount;
 
@@ -33,36 +37,23 @@ import com.jiwhiz.domain.account.UserAccount;
  * @author Yuan Ji
  * 
  */
+@ToString(callSuper=true)
 @SuppressWarnings("serial")
 @Entity
 @Table( name="COMMENT_POST" )
 public class CommentPost extends AbstractPost {
     
+    @Getter @Setter
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="blog_post_id")
     private BlogPost blogPost;
     
+    @Getter @Setter
     @Enumerated(EnumType.STRING)
     @Column( name="status" )
     private CommentStatusType status;
     
-    public BlogPost getBlogPost() {
-        return blogPost;
-    }
-
-    public void setBlogPost(BlogPost blogPost) {
-        this.blogPost = blogPost;
-    }
-
-    public CommentStatusType getStatus() {
-        return status;
-    }
-
-    public void setStatus(CommentStatusType status) {
-        this.status = status;
-    }
-
     public CommentPost() {
     }
     

@@ -15,8 +15,7 @@
  */
 package com.jiwhiz.domain.account.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.social.UserIdSource;
@@ -34,9 +33,9 @@ import com.jiwhiz.domain.account.UserRoleType;
  * @author Yuan Ji
  * 
  */
+@Slf4j
 public class UserAccountServiceImpl implements UserAccountService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserAccountServiceImpl.class);
-
+    
     private final UserAccountRepository accountRepository;
     private final UserIdSource userIdSource;
 
@@ -50,7 +49,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         UserAccount account = new UserAccount();
         
         if (accountRepository.count() == 0l) {
-            LOGGER.info("First user, set as admin and author.");
+            log.info("First user, set as admin and author.");
             account.getRoles().add(UserRoleType.ROLE_AUTHOR);
             account.getRoles().add(UserRoleType.ROLE_ADMIN);
             account.setTrustedAccount(true);
@@ -62,7 +61,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         account.setWebSite(data.getProfileUrl());
         account.getRoles().add(UserRoleType.ROLE_USER);
         account = accountRepository.save(account);
-        LOGGER.info(String.format("A new user is created (userId='%s') for '%s'.", account.getUserId(),
+        log.info(String.format("A new user is created (userId='%s') for '%s'.", account.getUserId(),
                 account.getDisplayName()));
         
         

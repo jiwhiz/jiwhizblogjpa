@@ -21,6 +21,9 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -32,41 +35,30 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
  * 
  * @author Yuan Ji
  */
+@ToString(callSuper=true)
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
 @SuppressWarnings("serial")
 public abstract class BaseAuditableEntity extends BaseEntity {
 
+    @Getter
     @CreatedBy
     @Column( name="created_by" )
     private String createdBy;
     
+    @Getter
     @CreatedDate
     @Column( name="created_time" )
     private Date createdTime;
     
+    @Getter
     @LastModifiedBy
     @Column( name="last_modified_by" )
     private String lastModifiedBy;
     
+    @Getter
     @LastModifiedDate
     @Column( name="last_modified_time" )
     private Date lastModifiedTime;
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public Date getCreatedTime() {
-        return createdTime;
-    }
-
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public Date getLastModifiedTime() {
-        return lastModifiedTime;
-    }
-    
 }

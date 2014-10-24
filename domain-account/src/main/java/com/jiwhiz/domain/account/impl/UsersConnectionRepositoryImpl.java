@@ -39,6 +39,7 @@ import com.jiwhiz.domain.account.UserSocialConnectionRepository;
  *
  */
 public class UsersConnectionRepositoryImpl implements UsersConnectionRepository {
+    
     private final UserSocialConnectionRepository userSocialConnectionRepository;
     
     private final SocialAuthenticationServiceLocator socialAuthenticationServiceLocator;

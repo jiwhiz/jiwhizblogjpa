@@ -17,8 +17,7 @@ package com.jiwhiz.domain.post.impl;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.post.BlogPost;
@@ -32,9 +31,9 @@ import com.jiwhiz.domain.post.CommentPostService;
  * @author Yuan Ji
  * 
  */
+@Slf4j
 public class CommentPostServiceImpl implements CommentPostService {
-    private final static Logger LOGGER = LoggerFactory.getLogger(CommentPostServiceImpl.class);
-
+    
     private final CommentPostRepository commentPostRepository;
 
     @Inject
@@ -45,7 +44,7 @@ public class CommentPostServiceImpl implements CommentPostService {
     @Override
     public CommentPost postComment(UserAccount user, BlogPost blogPost, String content) {
         CommentPost comment = new CommentPost(user, blogPost, content);
-        LOGGER.debug(String.format("Add comment to blog ('%s'), by %s.", blogPost.getTitle(), user.getDisplayName()));
+        log.debug(String.format("Add comment to blog ('%s'), by %s.", blogPost.getTitle(), user.getDisplayName()));
 
         if (user.isTrustedAccount()) {
             comment.approve();

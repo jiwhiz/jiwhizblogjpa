@@ -21,6 +21,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
 
 import com.jiwhiz.domain.BaseEntity;
@@ -31,55 +35,28 @@ import com.jiwhiz.domain.BaseEntity;
  * @author Yuan Ji
  *
  */
+@ToString(callSuper=true)
 @SuppressWarnings("serial")
 @Entity
 @Table( name="REMEMBERME_TOKEN" )
 public class RememberMeToken extends BaseEntity {
 
+    @Getter @Setter
     @Column( name="username" )
     private String username;
     
+    @Getter @Setter
     @Column( name="series" )
     private String series;
     
+    @Getter @Setter
     @Column( name="token_value" )
     private String tokenValue;
     
+    @Getter @Setter
     @Column( name="date" )
     private Date date;
     
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getSeries() {
-        return series;
-    }
-
-    public void setSeries(String series) {
-        this.series = series;
-    }
-
-    public String getTokenValue() {
-        return tokenValue;
-    }
-
-    public void setTokenValue(String tokenValue) {
-        this.tokenValue = tokenValue;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public RememberMeToken() {
     }
     
@@ -89,10 +66,4 @@ public class RememberMeToken extends BaseEntity {
         this.tokenValue = token.getTokenValue();
         this.date = token.getDate();
     }
-    
-    @Override
-    public String toString() {
-        return String.format("RememberMeToken{username:'%s'; tokenValue:'%s'}", getUsername(), getTokenValue());
-    }
-
 }

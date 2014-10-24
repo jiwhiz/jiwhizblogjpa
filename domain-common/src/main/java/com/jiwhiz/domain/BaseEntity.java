@@ -23,6 +23,10 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -33,37 +37,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @author Yuan Ji
  * 
  */
+@ToString
 @MappedSuperclass
 @JsonIgnoreProperties(ignoreUnknown=true)
 @SuppressWarnings("serial")
 public abstract class BaseEntity implements Serializable {
     
+    @Getter @Setter
     @Id
     @Column( name="id" )
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid2")
     private String id;
 
+    @Getter @Setter
     @Version
     @Column( name="version" )
     private Long version;
     
-    public String getId() {
-        return id;
-    }
-    
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     @Override
     public int hashCode() {
         return (id == null) ? 0 : id.hashCode();
