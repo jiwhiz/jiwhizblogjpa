@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <USER_ACCOUNT id="user001" version="1" email="user1@jiwhizblog.com" display_name="John Doe" account_locked="false" trusted_account="true" created_time="2009-01-01 10:00:01.0000"/>
+    <USER_ACCOUNT id="user002" version="1" email="user2@jiwhizblog.com" display_name="Jane Doe" account_locked="false" trusted_account="false" created_time="2009-01-02 10:00:01.0000"/>
+    <USER_ACCOUNT id="user003" version="1" email="user3@jiwhizblog.com" display_name="Junior Doe" account_locked="false" trusted_account="true" created_time="2009-01-03 10:00:01.0000"/>
+    
+    <USER_ROLE account_id="user001" role="ROLE_USER"/>
+    <USER_ROLE account_id="user001" role="ROLE_AUTHOR"/>
+    <USER_ROLE account_id="user001" role="ROLE_ADMIN"/>
+    <USER_ROLE account_id="user002" role="ROLE_USER"/>
+    <USER_ROLE account_id="user002" role="ROLE_AUTHOR"/>
+    <USER_ROLE account_id="user003" role="ROLE_USER"/>
+
+    <BLOG_POST id="blog001" version="1" author_id="user001" title="Blog 1" content="blog 1 content" published="true" published_time="2010-01-01 10:00:01.0000" tag_string="Test,JiwhizBlog" created_time="2010-01-01 10:00:01.0000"/>
+    <BLOG_POST id="blog002" version="1" author_id="user001" title="Blog 2" content="blog 2 content" published="false" tag_string="Demo" created_time="2010-01-02 12:00:01.0000"/>
+    
+    <COMMENT_POST id="comm001"  version="1" author_id="user002" blog_post_id="blog001" content="approved comment by Jane Doe" status="APPROVED" created_time="2010-01-01 12:00:01.0000"/>
+    <COMMENT_POST id="comm002"  version="1" author_id="user001" blog_post_id="blog001" content="comment by author John Doe" status="APPROVED" created_time="2010-01-01 13:00:01.0000"/>
+    <COMMENT_POST id="comm003"  version="1" author_id="user002" blog_post_id="blog001" content="pending comment by Jane Doe" status="PENDING" created_time="2010-01-01 14:00:01.0000"/>
+    <COMMENT_POST id="comm101"  version="1" author_id="user002" blog_post_id="blog002" content="pending comment by Jane Doe for blog 002" status="PENDING" created_time="2010-01-02 10:00:01.0000"/>
+    
+</dataset>

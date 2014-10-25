@@ -16,7 +16,6 @@
 package com.jiwhiz.domain.post.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.when;
 
