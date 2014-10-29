@@ -41,11 +41,14 @@ import com.jiwhiz.domain.post.CommentPost;
 import com.jiwhiz.domain.post.CommentPostService;
 import com.jiwhiz.mail.CommentNotificationSender;
 import com.jiwhiz.rest.ResourceNotFoundException;
+import com.wordnik.swagger.annotations.Api;
 
 /**
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Post Comment", 
+     description="Post user comment to public blog", position = 12)
 public class PostCommentRestController extends AbstractUserRestController {
 
     private final BlogPostRepository blogPostRepository;

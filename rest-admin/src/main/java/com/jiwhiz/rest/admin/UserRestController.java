@@ -49,11 +49,14 @@ import com.jiwhiz.domain.account.UserSocialConnection;
 import com.jiwhiz.domain.account.UserSocialConnectionRepository;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
+import com.wordnik.swagger.annotations.Api;
 
 /**
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Admin User", 
+     description="User management", position = 31)
 public class UserRestController extends AbstractAdminRestController {
 
     private final UserAccountRepository userAccountRepository;

@@ -35,6 +35,7 @@ import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.account.UserAccountRepository;
 import com.jiwhiz.domain.account.UserAccountService;
 import com.jiwhiz.rest.ResourceNotFoundException;
+import com.wordnik.swagger.annotations.Api;
 
 
 /**
@@ -43,6 +44,8 @@ import com.jiwhiz.rest.ResourceNotFoundException;
  * @author Yuan Ji
  */
 @RestController
+@Api(value="User Account", 
+     description="Entry point for user account management", position = 10)
 public class UserAccountRestController extends AbstractUserRestController {
     
     private final UserAccountRepository userAccountRepository;

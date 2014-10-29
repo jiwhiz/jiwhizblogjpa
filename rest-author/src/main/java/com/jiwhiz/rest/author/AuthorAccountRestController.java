@@ -29,12 +29,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.account.UserAccountService;
+import com.wordnik.swagger.annotations.Api;
 
 
 /**
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Author Account", 
+     description="Entry point for author account management", position = 20)
 public class AuthorAccountRestController extends AbstractAuthorRestController {
 
     private final AuthorAccountResourceAssembler authorAccountResourceAssembler;

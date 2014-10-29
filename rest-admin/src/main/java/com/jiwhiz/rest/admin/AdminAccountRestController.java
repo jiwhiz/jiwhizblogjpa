@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.account.UserAccountService;
+import com.wordnik.swagger.annotations.Api;
 
 /**
  * RESTful API for AdminAccountResource.
@@ -36,6 +37,8 @@ import com.jiwhiz.domain.account.UserAccountService;
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Admin Account", 
+     description="Entry point for admin management", position = 30)
 public class AdminAccountRestController extends AbstractAdminRestController {
 
     private final AdminAccountResourceAssembler adminAccountResourceAssembler;

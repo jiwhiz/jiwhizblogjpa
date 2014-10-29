@@ -44,6 +44,7 @@ import com.jiwhiz.domain.post.CommentPostRepository;
 import com.jiwhiz.domain.post.CommentStatusType;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
+import com.wordnik.swagger.annotations.Api;
 
 /**
  * REST API for public BlogPost resources.
@@ -52,6 +53,8 @@ import com.jiwhiz.rest.UtilConstants;
  *
  */
 @RestController
+@Api(value="Public Blogs", 
+     description="Public blogs with comments", position = 1)
 @RequestMapping( value = API_ROOT, produces = "application/hal+json" )
 public class PublicBlogRestController {
     

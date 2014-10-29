@@ -44,12 +44,15 @@ import com.jiwhiz.domain.post.CommentPost;
 import com.jiwhiz.domain.post.CommentPostRepository;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
+import com.wordnik.swagger.annotations.Api;
 
 
 /**
  * @author Yuan Ji
  */
 @RestController
+@Api(value="User Comment", 
+     description="User comment management", position = 11)
 public class UserCommentRestController extends AbstractUserRestController {
     
     private final CommentPostRepository commentPostRepository;

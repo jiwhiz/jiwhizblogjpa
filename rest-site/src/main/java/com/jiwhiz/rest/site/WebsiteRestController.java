@@ -68,6 +68,8 @@ import com.jiwhiz.mail.ContactForm;
 import com.jiwhiz.mail.ContactMessageSender;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * REST API for public JiwhizBlog Web site.
@@ -75,6 +77,8 @@ import com.jiwhiz.rest.UtilConstants;
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Public Website", 
+     description="Entry point for public website and other general services", position = 0)
 @RequestMapping( value = API_ROOT, produces = "application/hal+json" )
 public class WebsiteRestController {
     
@@ -112,6 +116,7 @@ public class WebsiteRestController {
         this.userProfileResourceAssembler = userProfileResourceAssembler;
     }
 
+    @ApiOperation(value = "Get public website resource", position = 1)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE)
     @Transactional(readOnly=true)
     public HttpEntity<WebsiteResource> getPublicWebsiteResource() {
@@ -119,6 +124,7 @@ public class WebsiteRestController {
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get user profile", position = 2)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_PROFILES_USER)
     @Transactional(readOnly=true)
     public HttpEntity<UserProfileResource> getUserProfile(@PathVariable("userId") String userId) {
@@ -131,6 +137,7 @@ public class WebsiteRestController {
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
     
+    @ApiOperation(value = "Get user comment posts", position = 3)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_PROFILES_USER_COMMENTS)
     @Transactional(readOnly=true)
     public HttpEntity<PagedResources<PublicCommentResource>> getApprovedUserCommentPosts(
@@ -150,6 +157,7 @@ public class WebsiteRestController {
         
     }
     
+    @ApiOperation(value = "Get latest public blog", position = 4)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_LATEST_BLOG)
     @Transactional(readOnly=true)
     public HttpEntity<PublicBlogResource> getLatestBlogPost() throws ResourceNotFoundException {
@@ -164,6 +172,7 @@ public class WebsiteRestController {
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get most recent public blogs", position = 5)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_RECENT_BLOGS)
     @Transactional(readOnly=true)
     public HttpEntity<Resources<PublicBlogResource>> getRecentPublicBlogPosts() {
@@ -181,6 +190,7 @@ public class WebsiteRestController {
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get most recent public comments", position = 6)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_RECENT_COMMENTS)
     @Transactional(readOnly=true)
     public HttpEntity<Resources<Resource<CommentPost>>> getRecentPublicCommentPosts() {
@@ -198,6 +208,7 @@ public class WebsiteRestController {
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get tag cloud", position = 7)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_TAG_CLOUDS)
     @Transactional(readOnly=true)
     public HttpEntity<TagCloud[]> getTagCloud() {
@@ -233,6 +244,7 @@ public class WebsiteRestController {
         return new ResponseEntity<TagCloud[]>(returnTagClouds, HttpStatus.OK);
     }
     
+    @ApiOperation(value = "Submit contact message", position = 8)
     @RequestMapping(method = RequestMethod.POST, value = URL_SITE_CONTACT)
     @ResponseBody
     public String submitContactMessage(@RequestBody ContactForm contactForm) {

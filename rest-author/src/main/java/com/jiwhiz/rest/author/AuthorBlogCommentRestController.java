@@ -47,11 +47,14 @@ import com.jiwhiz.domain.post.CommentPostRepository;
 import com.jiwhiz.domain.post.CommentStatusType;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
+import com.wordnik.swagger.annotations.Api;
 
 /**
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Author Comment", 
+     description="Author blog comment management", position = 22)
 @Slf4j
 public class AuthorBlogCommentRestController extends AbstractAuthorRestController {
  

@@ -45,11 +45,14 @@ import com.jiwhiz.domain.post.BlogPost;
 import com.jiwhiz.domain.post.BlogPostRepository;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
+import com.wordnik.swagger.annotations.Api;
 
 /**
  * @author Yuan Ji
  */
 @RestController
+@Api(value="Author Blog",
+     description="Author blog management", position = 21)
 public class AuthorBlogRestController extends AbstractAuthorRestController {
 
     private final AuthorBlogResourceAssembler authorBlogResourceAssembler;
