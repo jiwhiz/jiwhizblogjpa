@@ -78,7 +78,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
  */
 @RestController
 @Api(value="Public Website", 
-     description="Entry point for public website and other general services", position = 0)
+     description="Entry point for public website and other general services", position = 1)
 @RequestMapping( value = API_ROOT, produces = "application/hal+json" )
 public class WebsiteRestController {
     
@@ -211,7 +211,7 @@ public class WebsiteRestController {
     @ApiOperation(value = "Get tag cloud", position = 7)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_TAG_CLOUDS)
     @Transactional(readOnly=true)
-    public HttpEntity<TagCloud[]> getTagCloud() {
+    public HttpEntity<List<TagCloud>> getTagCloud() {
         Map<String, Integer> tagMap = new HashMap<String, Integer>();
         List<BlogPost> blogList = blogPostRepository.findByPublishedIsTrue();
         for (BlogPost blog : blogList) {
@@ -241,7 +241,7 @@ public class WebsiteRestController {
         }
         Arrays.sort(returnTagClouds, TagCloud.TagCloudNameComparator);
         
-        return new ResponseEntity<TagCloud[]>(returnTagClouds, HttpStatus.OK);
+        return new ResponseEntity<>(Arrays.asList(returnTagClouds), HttpStatus.OK);
     }
     
     @ApiOperation(value = "Submit contact message", position = 8)

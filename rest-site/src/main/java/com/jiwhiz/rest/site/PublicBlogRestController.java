@@ -54,7 +54,7 @@ import com.wordnik.swagger.annotations.Api;
  */
 @RestController
 @Api(value="Public Blogs", 
-     description="Public blogs with comments", position = 1)
+     description="Public blogs with comments", position = 2)
 @RequestMapping( value = API_ROOT, produces = "application/hal+json" )
 public class PublicBlogRestController {
     
