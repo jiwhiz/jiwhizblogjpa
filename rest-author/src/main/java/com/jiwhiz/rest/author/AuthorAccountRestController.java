@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.account.UserAccountService;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 
 /**
@@ -37,7 +38,7 @@ import com.wordnik.swagger.annotations.Api;
  */
 @RestController
 @Api(value="Author Account", 
-     description="Entry point for author account management", position = 20)
+     description="Entry point for logged in author management", position = 20)
 public class AuthorAccountRestController extends AbstractAuthorRestController {
 
     private final AuthorAccountResourceAssembler authorAccountResourceAssembler;
@@ -50,6 +51,8 @@ public class AuthorAccountRestController extends AbstractAuthorRestController {
         this.authorAccountResourceAssembler = authorAccountResourceAssembler;
     }
 
+    @ApiOperation(value = "Get Author Account", 
+            notes = "Return logged in author account resource, with links to other resources.")
     @RequestMapping(method = RequestMethod.GET, value = URL_AUTHOR)
     @Transactional(readOnly=true)
     public HttpEntity<AuthorAccountResource> getCurrentAuthorAccount() {        

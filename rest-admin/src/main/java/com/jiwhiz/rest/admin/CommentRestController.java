@@ -45,6 +45,7 @@ import com.jiwhiz.domain.post.CommentStatusType;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * @author Yuan Ji
@@ -67,6 +68,8 @@ public class CommentRestController extends AbstractAdminRestController {
         this.commentResourceAssembler = commentResourceAssembler;
     }
 
+    @ApiOperation(value = "Get All Comments",
+            notes = "Return all CommentPost resources in the system, with pagination.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_COMMENTS)
     @Transactional(readOnly=true)
     public HttpEntity<PagedResources<CommentResource>> getCommentPosts(
@@ -77,6 +80,8 @@ public class CommentRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(assembler.toResource(commentPosts, commentResourceAssembler), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get Comment By Id",
+            notes = "Return one CommentPost by specific id.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_COMMENTS_COMMENT)
     @Transactional(readOnly=true)
     public HttpEntity<CommentResource> getCommentPostById(
@@ -86,6 +91,8 @@ public class CommentRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(commentResourceAssembler.toResource(commentPost), HttpStatus.OK);
     }
     
+    @ApiOperation(value = "Update Comment",
+            notes = "Update comment content or status by specific comment id.")
     @RequestMapping(method = RequestMethod.PATCH, value = URL_ADMIN_COMMENTS_COMMENT)
     @Transactional
     public HttpEntity<Void> updateCommentPost(

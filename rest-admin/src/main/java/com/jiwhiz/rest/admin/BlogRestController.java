@@ -44,6 +44,7 @@ import com.jiwhiz.domain.post.CommentPostRepository;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * @author Yuan Ji
@@ -72,6 +73,8 @@ public class BlogRestController extends AbstractAdminRestController {
         this.commentResourceAssembler = commentResourceAssembler;
     }
 
+    @ApiOperation(value = "Get All Blogs",
+            notes = "Return all BlogPost resources in the system, either public or private, with pagination.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_BLOGS) 
     @Transactional(readOnly=true)
     public HttpEntity<PagedResources<BlogResource>> getAllBlogPosts(
@@ -82,6 +85,8 @@ public class BlogRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(assembler.toResource(blogPosts, blogResourceAssembler), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get Blog By Id",
+            notes = "Return one BlogPost resource by specific id.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_BLOGS_BLOG)
     @Transactional(readOnly=true)
     public HttpEntity<BlogResource> getBlogPostById(
@@ -91,6 +96,8 @@ public class BlogRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(blogResourceAssembler.toResource(blogPost), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get Blog Cmments By Blog Id",
+            notes = "Return all comment resources for one BlogPost by specific blog id.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_BLOGS_BLOG_COMMENTS) 
     @Transactional(readOnly=true)
     public HttpEntity<PagedResources<CommentResource>> getCommentPostsByBlogPostId(

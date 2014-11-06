@@ -116,7 +116,7 @@ public class WebsiteRestController {
         this.userProfileResourceAssembler = userProfileResourceAssembler;
     }
 
-    @ApiOperation(value = "Get public website resource", position = 1)
+    @ApiOperation(value = "Get public website resource", response = WebsiteResource.class, position = 1)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE)
     @Transactional(readOnly=true)
     public HttpEntity<WebsiteResource> getPublicWebsiteResource() {
@@ -124,7 +124,7 @@ public class WebsiteRestController {
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Get user profile", position = 2)
+    @ApiOperation(value = "Get user profile", response = UserProfileResource.class, position = 2)
     @RequestMapping(method = RequestMethod.GET, value = URL_SITE_PROFILES_USER)
     @Transactional(readOnly=true)
     public HttpEntity<UserProfileResource> getUserProfile(@PathVariable("userId") String userId) {

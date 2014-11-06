@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jiwhiz.domain.account.UserAccount;
 import com.jiwhiz.domain.account.UserAccountService;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * RESTful API for AdminAccountResource.
@@ -38,7 +39,7 @@ import com.wordnik.swagger.annotations.Api;
  */
 @RestController
 @Api(value="Admin Account", 
-     description="Entry point for admin management", position = 30)
+     description="Entry point for logged in admin management", position = 30)
 public class AdminAccountRestController extends AbstractAdminRestController {
 
     private final AdminAccountResourceAssembler adminAccountResourceAssembler;
@@ -51,10 +52,8 @@ public class AdminAccountRestController extends AbstractAdminRestController {
         this.adminAccountResourceAssembler = adminAccountResourceAssembler;
     }
 
-    /**
-     * Get admin info, which contains role, links to other api.
-     * @return
-     */
+    @ApiOperation(value = "Get Admin Account", 
+            notes = "Return logged in admin account resource, with links to other resources.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN)
     @Transactional(readOnly=true)
     public HttpEntity<AdminAccountResource> getAdminAccount() {

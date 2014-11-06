@@ -50,6 +50,7 @@ import com.jiwhiz.domain.account.UserSocialConnectionRepository;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * @author Yuan Ji
@@ -75,6 +76,8 @@ public class UserRestController extends AbstractAdminRestController {
         this.userResourceAssembler = userResourceAssembler;
     }
 
+    @ApiOperation(value = "Get All User Account",
+            notes = "Return all UserAccount resources in the system, with pagination.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_USERS)
     @Transactional(readOnly=true)
     public HttpEntity<PagedResources<UserResource>> getUserAccounts(
@@ -86,6 +89,8 @@ public class UserRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(assembler.toResource(userAccounts, userResourceAssembler), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get User Account By Id",
+            notes = "Return one UserAccount resource by specific id.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_USERS_USER)
     @Transactional(readOnly=true)
     public HttpEntity<UserResource> getUserAccountByUserId(
@@ -95,6 +100,8 @@ public class UserRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(userResourceAssembler.toResource(userAccount), HttpStatus.OK);
     }
     
+    @ApiOperation(value = "Get User Social Connections By User Id",
+            notes = "Return all social connections of specific user.")
     @RequestMapping(method = RequestMethod.GET, value = URL_ADMIN_USERS_USER_SOCIAL_CONNECTIONS)
     @Transactional(readOnly=true)
     public HttpEntity<Map<String, UserSocialConnection>> getUserSocialConnections(
@@ -109,7 +116,8 @@ public class UserRestController extends AbstractAdminRestController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    
+    @ApiOperation(value = "Update User Account",
+            notes = "Update UserAccount lock/trust, or security roles.")
     @RequestMapping(method = RequestMethod.PATCH, value = URL_ADMIN_USERS_USER)
     @Transactional
     public HttpEntity<Void> updateUserAccount(@PathVariable("userId") String userId, 

@@ -48,6 +48,7 @@ import com.jiwhiz.mail.ContactForm;
 import com.jiwhiz.mail.ContactMessageSender;
 import com.jiwhiz.mail.SystemMessageSender;
 import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
+import com.mangofactory.swagger.ordering.ResourceListingPositionalOrdering;
 import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 import com.wordnik.swagger.model.ApiInfo;
@@ -150,7 +151,10 @@ public class JiwhizBlogSwaggerUIApplication {
     public SwaggerSpringMvcPlugin customImplementation(){
        return new SwaggerSpringMvcPlugin(springSwaggerConfig)
              .apiInfo(apiInfo())
-             .includePatterns("/api/.*");
+             .includePatterns("/api/.*")
+             .apiListingReferenceOrdering(new ResourceListingPositionalOrdering())
+             //.apiDescriptionOrdering(new MyCustomApiDescriptionOrdering());
+             ;
     }
 
     private ApiInfo apiInfo() {
