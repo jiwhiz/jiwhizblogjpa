@@ -46,6 +46,7 @@ import com.jiwhiz.domain.post.BlogPostRepository;
 import com.jiwhiz.rest.ResourceNotFoundException;
 import com.jiwhiz.rest.UtilConstants;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * @author Yuan Ji
@@ -65,6 +66,8 @@ public class AuthorBlogRestController extends AbstractAuthorRestController {
         this.authorBlogResourceAssembler = authorBlogResourceAssembler;
     }
 
+    @ApiOperation(value = "Get Author Blog Posts", 
+            notes = "Return blog post resources from logged in author, order by created time.")
     @RequestMapping(method = RequestMethod.GET, value = URL_AUTHOR_BLOGS) 
     @Transactional(readOnly=true)
     public HttpEntity<PagedResources<AuthorBlogResource>> getAuthorBlogPosts(
@@ -75,6 +78,8 @@ public class AuthorBlogRestController extends AbstractAuthorRestController {
         return new ResponseEntity<>(assembler.toResource(blogPosts, authorBlogResourceAssembler), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Get Admin Account", 
+            notes = "Return logged in admin account resource, with links to other resources.")
     @RequestMapping(method = RequestMethod.GET, value = URL_AUTHOR_BLOGS_BLOG) 
     @Transactional(readOnly=true)
     public HttpEntity<AuthorBlogResource> getAuthorBlogPostById(@PathVariable("blogId") String blogId) 
